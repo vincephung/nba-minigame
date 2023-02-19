@@ -1,0 +1,23 @@
+<div class="main-container">
+  <h1 class="title">NBA Daily Stat Leader Minigame</h1>
+  <mat-tab-group>
+    <mat-tab label="Points"></mat-tab>
+    <mat-tab label="Assists"></mat-tab>
+    <mat-tab label="Rebounds"></mat-tab>
+  </mat-tab-group>
+  <mat-grid-list class="grid-list" cols="3" >
+    <mat-grid-tile class="grid-tile">
+      <app-hints></app-hints>
+    </mat-grid-tile>
+    <mat-grid-tile class="grid-tile">
+      <mat-card class="card">
+        <mat-card-title-group>
+          Guess today's leading scorer
+        </mat-card-title-group>
+        <img class="card-image" mat-card-image src="\assets\Question_mark_(black).svg.png">
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile class="grid-tile">3</mat-grid-tile>
+  </mat-grid-list>
+  <app-search-player></app-search-player>
+</div>

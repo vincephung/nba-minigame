@@ -1,0 +1,8 @@
+{
+  "/v0": {
+  "target": "https://api.nba.com",
+  "secure": true,
+  "changeOrigin": true,
+  "logLevel": "debug"
+  }
+  }
