@@ -1,21 +1,16 @@
-.card{
-  /*
-  border-color: black;
-  border-style: solid;
-  border-width: 5px; */
-}
 .card-image {
-    max-width: 400px;
-    max-height: 200px;
+  max-width: 400px;
+  max-height: 200px;
 }
 
-.grid-tile{
-  /*
-  border-color: black;
-  border-style: solid;
-  border-width: 5px; */
+.grid-list {
+  background-color: beige;
+}
+
+.title {
+  text-align: center;
 }
 
 .title{
-  text-align: center;
+  color:darkcyan
 }

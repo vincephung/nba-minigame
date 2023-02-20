@@ -22,10 +22,19 @@ export interface PlayerInfo {
   weight: string;
 }
 
+export interface Hints {
+  country: string;
+  draft: [];
+}
+
 export interface PlayerStatsApiResponse{
   players: PlayerStats[];
 }
 export interface PlayerStats {
+  stats: Stats;
+}
+
+export interface Stats{
   ast: number,
   pts: number,
   reb: number,
@@ -72,10 +81,14 @@ export const emptyPlayerInfo: PlayerInfo = {
   weight: '',
 };
 
-export const emptyPlayerStats: PlayerStats = {
+export const emptyStats: Stats = {
   ast: 0,
   pts: 0,
   reb: 0,
+};
+
+export const emptyPlayerStats: PlayerStats = {
+  stats: emptyStats
 };
 
 export const emptyPlayer: Player = {

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { map, Observable, of, startWith, switchMap } from 'rxjs';
-import { emptyPlayerInfo, PlayerInfo } from '../interfaces/interfaces';
+import { map, Observable, of, startWith } from 'rxjs';
+import { emptyPlayer, Player, PlayerInfo } from '../interfaces/interfaces';
 import { PlayerService } from '../player.service';
 
 @Component({
@@ -10,6 +10,8 @@ import { PlayerService } from '../player.service';
   styleUrls: ['./search-player.component.css'],
 })
 export class SearchPlayerComponent {
+  @Output() correctGuess = new EventEmitter<boolean>();
+  @Input() vm: Player = emptyPlayer;
   filteredOptions$: Observable<string[]> = of([]);
   players$: Observable<PlayerInfo[]> = of([]);
   myControl = new FormControl('');
@@ -32,5 +34,10 @@ export class SearchPlayerComponent {
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  checkAnswer(){
+    this.vm.playerName = 'Precious Achiuwa';
+    this.correctGuess.emit(this.myControl.value === this.vm.playerName);
   }
 }

@@ -2,14 +2,17 @@
   <mat-form-field class="example-full-width" appearance="fill">
     <input
       type="text"
-      placeholder="Pick one"
-      aria-label="Number"
+      placeholder="Select an NBA player"
+      aria-label="Select player"
       matInput
       [formControl]="myControl"
       [matAutocomplete]="auto"
     />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let player of filteredOptions$ | async" [value]="player">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="checkAnswer()">
+      <mat-option
+        *ngFor="let player of filteredOptions$ | async"
+        [value]="player"
+      >
         {{ player }}
       </mat-option>
     </mat-autocomplete>

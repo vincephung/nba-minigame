@@ -1,16 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { forkJoin, Observable, of } from 'rxjs';
-import { combineLatest, concatMap, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { DialogComponent } from '../dialog/dialog.component';
 import { STAT_TYPES } from '../enums/enums';
-import {
-  DailyLeader,
-  emptyPlayer,
-  emptyPlayerInfo,
-  emptyPlayerStats,
-  Player,
-  PlayerInfo,
-  PlayerStats,
-} from '../interfaces/interfaces';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { emptyPlayer, Player } from '../interfaces/interfaces';
 import { PlayerService } from '../player.service';
 
 @Component({
@@ -19,104 +14,77 @@ import { PlayerService } from '../player.service';
   styleUrls: ['./game.component.css'],
 })
 export class GameComponent {
-  playerData$: Observable<PlayerInfo> = of(emptyPlayerInfo);
-  dailyStatLeader$: DailyLeader | undefined;
-  playerStats$: Observable<PlayerStats> = of(emptyPlayerStats);
-  exampleObs$ = Observable<PlayerInfo>;
+  @Input() selectedIndex = 0;
+  @Input() correctGuess = false;
+  showModal: boolean = false;
   vm$: Observable<Player> = of(emptyPlayer);
+  statType: string = STAT_TYPES.PTS
 
-  constructor(private playerService: PlayerService) {}
+  constructor(private playerService: PlayerService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    // by default start with getting point leader
-
-    //this.getDailyStatLeader(STAT_TYPES.PTS);
-    //this.buildPlayerData(1630173)
-
-    // need to handle case where these is NO nba games.
-    // Maybe show : No NBA Games please try again when a game has been played.
-
-    /*
-    this.playerData$ = this.playerService
-    .getDailyStatLeader(STAT_TYPES.AST).pipe(
-      switchMap((data) => { return this.playerService.getPlayerData(data.PLAYER_ID)})
-    )
-    */
-
-    /*
-    this.playerData$ = this.playerService
-      .getDailyStatLeader(STAT_TYPES.AST)
-      .pipe(
-        switchMap((data) => {
-          return this.playerService.getPlayerData(1630173);
-        })
-      );
-
-    this.playerStats$ = this.playerService
-      .getDailyStatLeader(STAT_TYPES.AST)
-      .pipe(
-        switchMap((data) => {
-          return this.playerService.getPlayerStats(1630173);
-        })
-      );
-
-      */
-
-    this.vm$ = this.playerService
-      .getDailyStatLeader(STAT_TYPES.PTS)
-      .pipe(
-        switchMap((data) =>
-          forkJoin([
-            of(data),
-            this.playerService.getPlayerData(1630173),
-            this.playerService.getPlayerStats(1630173),
-          ])
-        ),
-        map(([dailyLeader,playerInfo,playerStats])=>{
-          const player: Player = {
-            playerID: dailyLeader?.PLAYER_ID ?? 0,
-            playerName: dailyLeader?.PLAYER_NAME ?? '',
-            playerInfo,
-            playerStats,
-          };
-          console.log(player)
-          return player;
-        })
-      )
-
+    this.getStats(STAT_TYPES.PTS);
     this.vm$.subscribe();
   }
 
-  getDailyStatLeader(stat_type: string): void {
-    this.playerService
-      .getDailyStatLeader(stat_type)
-      .subscribe((dailyStatLeader) => {
-        this.dailyStatLeader$ = dailyStatLeader;
-        console.log(dailyStatLeader);
-      });
+  getStats(statType: string) {
+    this.vm$ = this.playerService.getDailyStatLeader(statType).pipe(
+      switchMap((data) =>
+        forkJoin([
+          of(data),
+          this.playerService.getPlayerData(data.PLAYER_ID),
+          this.playerService.getPlayerStats(data.PLAYER_ID),
+        ])
+      ),
+      map(([dailyLeader, playerInfo, playerStats]) => {
+        const player: Player = {
+          playerID: dailyLeader?.PLAYER_ID ?? 0,
+          playerName: dailyLeader?.PLAYER_NAME ?? '',
+          playerInfo,
+          playerStats,
+        };
+        return player;
+      }),
+      catchError(err=>{
+        this.openErrorDialog();
+        throw err
+      })
+    );
   }
 
-  getPlayerById(playerId: number) {
-    this.playerService.getPlayerData(playerId).subscribe((player) => {
-      console.log(player);
+  onTabChanged() {
+    switch (this.selectedIndex) {
+      case 0: {
+        this.statType = STAT_TYPES.PTS;
+        break;
+      }
+      case 1: {
+        this.statType = STAT_TYPES.AST;
+        break;
+      }
+      case 2: {
+        this.statType = STAT_TYPES.REB;
+        break;
+      }
+    }
+    this.getStats(this.statType);
+  }
+
+  checkAnswer(correctGuess: boolean) {
+    this.showModal = correctGuess;
+    this.openDialog(correctGuess);
+  }
+
+  openDialog(correctGuess: boolean): void {
+    this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {correctGuess},
     });
   }
 
-  getPlayerStats(playerId: number) {
-    this.playerService.getPlayerStats(playerId).subscribe((player) => {
-      console.log(player);
+  openErrorDialog(): void{
+    this.dialog.open(ErrorDialogComponent, {
+      width: '250px',
     });
   }
-
-  buildPlayerData(playerId: number) {
-    forkJoin([
-      this.playerService.getPlayerData(playerId),
-      this.playerService.getPlayerStats(playerId),
-    ]).subscribe(([playerData, playerStats]) => {
-      //this.playerData$ = playerData;
-      //this.playerStats$ = playerStats;
-    });
-  }
-  // ng on init, call api to get data
-  // render components
 }
