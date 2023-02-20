@@ -4,7 +4,7 @@ import { Player, emptyPlayer } from '../interfaces/interfaces';
 @Component({
   selector: 'app-initial-hints',
   templateUrl: './initial-hints.component.html',
-  styleUrls: ['./initial-hints.component.css']
+  styleUrls: ['./initial-hints.component.css'],
 })
 export class InitialHintsComponent {
   @Input() vm: Player = emptyPlayer;

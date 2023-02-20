@@ -1,0 +1,38 @@
+<div class="main-container" *ngIf="vm$ | async as vm">
+  <header class="header">
+    <h1 class="title">NBA Daily Stat Leader Minigame</h1>
+    <mat-tab-group
+      (selectedTabChange)="onTabChanged()"
+      [(selectedIndex)]="selectedIndex"
+      class="tabs"
+    >
+      <mat-tab label="Points"></mat-tab>
+      <mat-tab label="Assists"></mat-tab>
+      <mat-tab label="Rebounds"></mat-tab>
+    </mat-tab-group>
+  </header>
+  <mat-grid-list class="grid-list" cols="3">
+    <mat-grid-tile class="grid-tile">
+      <app-hints [vm]="vm"></app-hints>
+    </mat-grid-tile>
+    <mat-grid-tile class="grid-tile">
+      <mat-card class="card">
+        <mat-card-title-group>
+          Guess today's {{ statType }} leader
+        </mat-card-title-group>
+        <img
+          class="card-image"
+          mat-card-image
+          src="\assets\Question_mark_(black).svg.png"
+        />
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile class="grid-tile">
+      <app-initial-hints [vm]="vm"></app-initial-hints>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <app-search-player
+    [vm]="vm"
+    (correctGuess)="checkAnswer($event)"
+  ></app-search-player>
+</div>

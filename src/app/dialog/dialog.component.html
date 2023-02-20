@@ -2,10 +2,10 @@
   You guessed the correct NBA player!
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close cdkFocusInitial (click)="closeModal()">Ok</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="closeModal()">
+    Ok
+  </button>
 </div>
 <ng-template #elseblock>
-  <div mat-dialog-content>
-    You guessed the wrong NBA player, try again!
-  </div>
+  <div mat-dialog-content>You guessed the wrong NBA player, try again!</div>
 </ng-template>

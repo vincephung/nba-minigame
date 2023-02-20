@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SearchPlayerComponent } from './search-player.component';
 
 describe('SearchPlayerComponent', () => {
@@ -8,9 +7,8 @@ describe('SearchPlayerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchPlayerComponent ]
-    })
-    .compileComponents();
+      declarations: [SearchPlayerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SearchPlayerComponent);
     component = fixture.componentInstance;

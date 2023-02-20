@@ -1,12 +1,12 @@
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { forkJoin, Observable, of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { DialogComponent } from '../dialog/dialog.component';
-import { STAT_TYPES } from '../enums/enums';
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { emptyPlayer, Player } from '../interfaces/interfaces';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { forkJoin, Observable, of } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 import { PlayerService } from '../player.service';
+import { STAT_TYPES } from '../enums/enums';
 
 @Component({
   selector: 'app-player',
@@ -18,7 +18,7 @@ export class GameComponent {
   @Input() correctGuess = false;
   showModal: boolean = false;
   vm$: Observable<Player> = of(emptyPlayer);
-  statType: string = STAT_TYPES.PTS
+  statType: string = STAT_TYPES.PTS;
 
   constructor(private playerService: PlayerService, public dialog: MatDialog) {}
 
@@ -45,9 +45,9 @@ export class GameComponent {
         };
         return player;
       }),
-      catchError(err=>{
+      catchError((err) => {
         this.openErrorDialog();
-        throw err
+        throw err;
       })
     );
   }
@@ -78,11 +78,11 @@ export class GameComponent {
   openDialog(correctGuess: boolean): void {
     this.dialog.open(DialogComponent, {
       width: '250px',
-      data: {correctGuess},
+      data: { correctGuess },
     });
   }
 
-  openErrorDialog(): void{
+  openErrorDialog(): void {
     this.dialog.open(ErrorDialogComponent, {
       width: '250px',
     });

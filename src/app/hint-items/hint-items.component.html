@@ -1,10 +1,17 @@
 <div class="btn-container">
   <mat-list-item class="hint-container">
-    <button id="raised" type="button" mat-raised-button color="primary" class="btn" (click)="handleClick()" >
-      {{statName}}
+    <button
+      id="raised"
+      type="button"
+      mat-raised-button
+      color="primary"
+      class="btn"
+      (click)="handleClick()"
+    >
+      {{ statName }}
     </button>
   </mat-list-item>
   <mat-list-item class="hint-container" *ngIf="textVisible">
-    <p>{{playerStat}}</p>
+    <p>{{ playerStat }}</p>
   </mat-list-item>
 </div>

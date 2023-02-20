@@ -1,8 +1,8 @@
-.btn-container{
+.btn-container {
   display: flex;
   flex-direction: row;
 }
 
-.btn{
+.btn {
   min-width: 50%;
 }

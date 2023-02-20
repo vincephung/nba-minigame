@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InitialHintsComponent } from './initial-hints.component';
 
 describe('InitialHintsComponent', () => {
@@ -8,9 +7,8 @@ describe('InitialHintsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InitialHintsComponent ]
-    })
-    .compileComponents();
+      declarations: [InitialHintsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InitialHintsComponent);
     component = fixture.componentInstance;

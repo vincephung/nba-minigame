@@ -1,15 +1,15 @@
 export enum STAT_TYPES {
-  PTS = 'pts',
   AST = 'ast',
+  PTS = 'pts',
   REB = 'reb',
 }
 
-export enum PLAYER_HINTS{
-  COUNTRY= 'Country',
+export enum PLAYER_HINTS {
+  COUNTRY = 'Country',
   DRAFT_DATA = 'Draft',
-  LAST_AFFILIATION = 'High School/College',
-  TEAM_NAME = "Team",
   JERSEY_NUM = 'Number',
-  POSITION = 'Position',
+  LAST_AFFILIATION = 'High School/College',
   PHYSICALS = 'Physicals',
+  POSITION = 'Position',
+  TEAM_NAME = 'Team',
 }

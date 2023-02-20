@@ -29,7 +29,6 @@ export class PlayerService {
     'Access-Control-Allow-Origin': '*',
   });
 
-
   getDailyStatLeader(stat: string): Observable<DailyLeader> {
     const dailyStatParams = new HttpParams()
       .set('leagueId', '00')
@@ -42,10 +41,7 @@ export class PlayerService {
       .pipe(
         map((res: TopDailyStatlines) => res.playerstats[0]),
         catchError(
-          this.handleError<DailyLeader>(
-            'getDailyStatLeader',
-            emptyStatline
-          )
+          this.handleError<DailyLeader>('getDailyStatLeader', emptyStatline)
         )
       );
   }
@@ -61,9 +57,7 @@ export class PlayerService {
       })
       .pipe(
         map((res: PlayerApiResponse) => res.players),
-        catchError(
-          this.handleError<PlayerInfo[]>('getAllPlayers')
-        )
+        catchError(this.handleError<PlayerInfo[]>('getAllPlayers'))
       );
   }
 
@@ -77,8 +71,11 @@ export class PlayerService {
         params: playerParams,
       })
       .pipe(
-        map((res: PlayerApiResponse) =>
-          res.players.find((player: PlayerInfo) => player.playerId === playerId) ?? emptyPlayerInfo
+        map(
+          (res: PlayerApiResponse) =>
+            res.players.find(
+              (player: PlayerInfo) => player.playerId === playerId
+            ) ?? emptyPlayerInfo
         ),
         catchError(
           this.handleError<PlayerInfo>('getPlayerData', emptyPlayerInfo)

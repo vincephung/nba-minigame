@@ -1,16 +1,37 @@
 <mat-list class="hint-list">
   <h1>Click to reveal hints</h1>
-  <app-hint-items [statName] = "PLAYER_HINTS.TEAM_NAME" [playerStat]="vm.playerInfo.teamName"></app-hint-items>
+  <app-hint-items
+    [statName]="PLAYER_HINTS.TEAM_NAME"
+    [playerStat]="vm.playerInfo.teamName"
+  ></app-hint-items>
   <mat-divider></mat-divider>
-  <app-hint-items [statName] = "PLAYER_HINTS.COUNTRY" [playerStat]="vm.playerInfo.country"></app-hint-items>
+  <app-hint-items
+    [statName]="PLAYER_HINTS.COUNTRY"
+    [playerStat]="vm.playerInfo.country"
+  ></app-hint-items>
   <mat-divider></mat-divider>
-  <app-hint-items [statName] = "PLAYER_HINTS.LAST_AFFILIATION" [playerStat]="vm.playerInfo.lastAffiliation"></app-hint-items>
+  <app-hint-items
+    [statName]="PLAYER_HINTS.LAST_AFFILIATION"
+    [playerStat]="vm.playerInfo.lastAffiliation"
+  ></app-hint-items>
   <mat-divider></mat-divider>
-  <app-hint-items [statName] = "PLAYER_HINTS.JERSEY_NUM" [playerStat]="vm.playerInfo.jerseyNum"></app-hint-items>
+  <app-hint-items
+    [statName]="PLAYER_HINTS.JERSEY_NUM"
+    [playerStat]="vm.playerInfo.jerseyNum"
+  ></app-hint-items>
   <mat-divider></mat-divider>
-  <app-hint-items [statName] = "PLAYER_HINTS.POSITION" [playerStat]="vm.playerInfo.position"></app-hint-items>
+  <app-hint-items
+    [statName]="PLAYER_HINTS.POSITION"
+    [playerStat]="vm.playerInfo.position"
+  ></app-hint-items>
   <mat-divider></mat-divider>
-  <app-hint-items [statName] = "PLAYER_HINTS.DRAFT_DATA" [playerStat]="getDraftData()"></app-hint-items>
+  <app-hint-items
+    [statName]="PLAYER_HINTS.DRAFT_DATA"
+    [playerStat]="getDraftData()"
+  ></app-hint-items>
   <mat-divider></mat-divider>
-  <app-hint-items [statName] = "PLAYER_HINTS.PHYSICALS" [playerStat]="getPhysicals()"></app-hint-items>
+  <app-hint-items
+    [statName]="PLAYER_HINTS.PHYSICALS"
+    [playerStat]="getPhysicals()"
+  ></app-hint-items>
 </mat-list>

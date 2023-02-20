@@ -1,8 +1,8 @@
 export interface Player {
-  playerID: number,
-  playerInfo: PlayerInfo,
-  playerName: string,
-  playerStats: PlayerStats
+  playerID: number;
+  playerInfo: PlayerInfo;
+  playerName: string;
+  playerStats: PlayerStats;
 }
 
 export interface PlayerInfo {
@@ -15,7 +15,7 @@ export interface PlayerInfo {
   jerseyNum: string;
   lastAffiliation: string;
   lastName: string;
-  playerId : number;
+  playerId: number;
   position: string;
   teamCity: string;
   teamName: string;
@@ -27,24 +27,24 @@ export interface Hints {
   draft: [];
 }
 
-export interface PlayerStatsApiResponse{
+export interface PlayerStatsApiResponse {
   players: PlayerStats[];
 }
 export interface PlayerStats {
   stats: Stats;
 }
 
-export interface Stats{
-  ast: number,
-  pts: number,
-  reb: number,
+export interface Stats {
+  ast: number;
+  pts: number;
+  reb: number;
 }
 
-export interface DailyLeader{
-  AST?: number,
-  PLAYER_ID: number,
-  PLAYER_NAME: string,
-  PTS?: number,
+export interface DailyLeader {
+  AST?: number;
+  PLAYER_ID: number;
+  PLAYER_NAME: string;
+  PTS?: number;
   REB?: number;
 }
 
@@ -88,12 +88,12 @@ export const emptyStats: Stats = {
 };
 
 export const emptyPlayerStats: PlayerStats = {
-  stats: emptyStats
+  stats: emptyStats,
 };
 
 export const emptyPlayer: Player = {
   playerID: 0,
   playerInfo: emptyPlayerInfo,
   playerName: '',
-  playerStats: emptyPlayerStats
-}
+  playerStats: emptyPlayerStats,
+};
