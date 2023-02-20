@@ -13,6 +13,7 @@ import {
 } from './interfaces/interfaces';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { config } from 'src/config';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class PlayerService {
   private allPlayersUrl = 'v0/api/stats/player/index';
   private playerStatsUrl = 'v0/api/stats/player';
   private headers = new HttpHeaders({
-    'X-Gravitee-Api-Key': '4551cfb5-656b-4431-b702-620be2de0fe6',
+    'X-Gravitee-Api-Key': config.MY_API_KEY,
     Accept: 'application/json',
     'Access-Control-Allow-Origin': '*',
   });
