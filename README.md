@@ -1,5 +1,10 @@
 # NbaMinigame
 
+
+
+https://user-images.githubusercontent.com/46769408/221081860-184a7341-0a38-4f1f-a7be-0519b1de60d4.mp4
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
 
 ## Development server
