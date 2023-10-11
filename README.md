@@ -1,5 +1,9 @@
 # NbaMinigame
 
+- Participated in the NBA's Developer Mini-Game API Beta.
+- Developed a mini-game to guess the daily stat leader (PTS, AST, REB) using the NBA's API.
+- Provided feedback for documentation and API with the NBA Developer Portal.
+- Learning how to use new framework: Angular
 
 
 https://user-images.githubusercontent.com/46769408/221081860-184a7341-0a38-4f1f-a7be-0519b1de60d4.mp4
